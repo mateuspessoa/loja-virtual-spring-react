@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.dev.backend.entity.Cidade"/>
     <fullyQualifiedTypeName name="com.dev.backend.repository.PessoaRepository"/>
     <fullyQualifiedTypeName name="com.dev.backend.service.PessoaService"/>
     <fullyQualifiedTypeName name="com.dev.backend.repository.MarcaRepository"/>
@@ -33,12 +32,10 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
     <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="javax.persistence.Temporal"/>
-    <fullyQualifiedTypeName name="com.dev.backend.entity.Pessoa"/>
     <fullyQualifiedTypeName name="com.dev.backend.entity.Permissao"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
@@ -53,4 +50,10 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.dev.backend.entity.PermissaoPessoa"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
+    <fullyQualifiedTypeName name="com.dev.backend.entity.Cidade"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.BeanUtils"/>
+    <fullyQualifiedTypeName name="com.dev.backend.entity.Pessoa"/>
+    <fullyQualifiedTypeName name="com.dev.backend.dto.PessoaClienteRequestDTO"/>
+    <fullyQualifiedTypeName name="com.dev.backend.service.PessoaClienteService"/>
 </qualifiedTypeNameHistroy>
