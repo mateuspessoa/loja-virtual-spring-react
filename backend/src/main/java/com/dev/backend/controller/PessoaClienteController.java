@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dev.backend.dto.PessoaClienteRequestDTO;
 import com.dev.backend.entity.Pessoa;
 import com.dev.backend.service.PessoaService;
 
@@ -17,7 +18,8 @@ public class PessoaClienteController {
 	private PessoaService pessoaService;
 	
 	@PostMapping("/")
-	public Pessoa inserir(@RequestBody Pessoa pessoa) {
+	public Pessoa inserir(@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO) {
+		Pessoa pessoa = new PessoaClienteRequestDTO().converter(pessoaClienteRequestDTO);
 		return pessoaService.inserir(pessoa);
 	}
 
