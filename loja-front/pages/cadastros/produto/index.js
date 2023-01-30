@@ -3,6 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import styles from "../../../styles/produto.module.css"
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const Produto = () => {
   const [produto, setProduto] = useState({
@@ -23,13 +24,7 @@ const Produto = () => {
 
   useEffect(() => {
     buscarTodosProdutos();
-  }, [atualizar]);
-
-  useEffect(() => {
     buscarTodasMarcas();
-  }, [atualizar]);
-
-  useEffect(() => {
     buscarTodasCategorias();
   }, [atualizar]);
 
@@ -80,21 +75,40 @@ const Produto = () => {
     console.log(produto);
 
     if (produto.id === undefined) {
-      axios.post("http://localhost:8080/api/produto/", produto).then((result) => {
-        setAtualizar(result);
-      });
+      axios.post("http://localhost:8080/api/produto/", produto)
+        .then(() => {return new Swal("Sucesso", "Produto Cadastrado com Sucesso!", "success")}).then((result) => {
+          setAtualizar(result)
+        })
     } else {
-      axios.put("http://localhost:8080/api/produto/", produto).then((result) => {
-        setAtualizar(result);
+      axios.put("http://localhost:8080/api/produto/", produto)
+      .then(() => {return new Swal("Sucesso", "Dados Editados com Sucesso!", "success")}).then((result) => {
+        setAtualizar(result)
       });
     }
     limpar();
   }
 
   function excluir(id) {
-    axios.delete("http://localhost:8080/api/produto/" + id).then((result) => {
-      setAtualizar(result);
-    });
+    Swal.fire({
+      title: 'Você tem Certeza?',
+      text: "Essa ação não poderá ser desfeita!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Excluir'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("http://localhost:8080/api/produto/" + id).then(result => {
+          Swal.fire(
+            'Excluído!',
+            'O Produto foi excluído com sucesso!.',
+            'success'
+          )
+          setAtualizar(result)
+        })
+      }
+    })
   }
 
   return (
@@ -208,8 +222,8 @@ const Produto = () => {
               <tr key={produtoss.id}>
                 <td>{produtoss.descricaoCurta}</td>
                 <td>{produtoss.descricaoLonga}</td>
-                <td>{produtoss.valorCusto}</td>
-                <td>{produtoss.valorVenda}</td>
+                <td>R$ {produtoss.valorCusto},00</td>
+                <td>R${produtoss.valorVenda},00</td>
                 <td>{produtoss.marca.nome}</td>
                 <td>{produtoss.categoria.nome}</td>
                 <td className={styles.btns}>

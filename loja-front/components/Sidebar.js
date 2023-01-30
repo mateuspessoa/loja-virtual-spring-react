@@ -15,6 +15,7 @@ const Sidebar = () => {
             <Link className={styles.link} href="/cadastros/marca">Marcas</Link>
             <Link className={styles.link} href="/cadastros/permissao">Permissões</Link>
             <Link className={styles.link} href="/cadastros/produto">Produtos</Link>
+            <Link className={styles.link} href="/cadastros/pessoa">Pessoas</Link>
 
         </nav>
     </header>

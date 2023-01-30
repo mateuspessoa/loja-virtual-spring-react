@@ -7,12 +7,18 @@
 }
 
 .tabela {
-    width: 800px;
+    width: 1000px;
     height: 200px;
     margin-top: 200px;
-    margin-left: 200px;
+    margin-left: 80px;
 }
 
 .btns {
     display: flex;
+}
+
+.span {
+    color: red;
+    font-size: 14px;
+    display: none;
 }
