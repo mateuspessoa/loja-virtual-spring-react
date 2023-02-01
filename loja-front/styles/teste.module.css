@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+}
+
+.quadrado {
+    position: fixed;
+    display: block;
+    width: 700px;
+    height: 700px;
+    margin-top: 70px;
+    background-color: red;
+    z-index: 999;
+}
+
+.btnf {
+    height: 40px;
+    display: inline;
+}
+
+.btna {
+    height: 40px;
+    display: inline;
+}
+
+.conteudo {
+    position: relative;
+}

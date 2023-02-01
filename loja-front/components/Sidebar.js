@@ -9,13 +9,13 @@ const Sidebar = () => {
 
         <nav className={styles.navbar}>
 
-            <Link className={styles.link} href="/cadastros/estado">Estados</Link>
-            <Link className={styles.link} href="/cadastros/cidade">Cidades</Link>
-            <Link className={styles.link} href="/cadastros/categoria">Categorias</Link>
-            <Link className={styles.link} href="/cadastros/marca">Marcas</Link>
-            <Link className={styles.link} href="/cadastros/permissao">Permissões</Link>
-            <Link className={styles.link} href="/cadastros/produto">Produtos</Link>
-            <Link className={styles.link} href="/cadastros/pessoa">Pessoas</Link>
+            <Link className={styles.link} href="/admin/cadastros/estado">Estados</Link>
+            <Link className={styles.link} href="/admin/cadastros/cidade">Cidades</Link>
+            <Link className={styles.link} href="/admin/cadastros/categoria">Categorias</Link>
+            <Link className={styles.link} href="/admin/cadastros/marca">Marcas</Link>
+            <Link className={styles.link} href="/admin/cadastros/permissao">Permissões</Link>
+            <Link className={styles.link} href="/admin/cadastros/produto">Produtos</Link>
+            <Link className={styles.link} href="/admin/cadastros/pessoa">Pessoas</Link>
 
         </nav>
     </header>
