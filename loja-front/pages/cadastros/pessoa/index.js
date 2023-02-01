@@ -14,18 +14,22 @@ const Produto = () => {
     endereco: "",
     cep: "",
     cidade: {},
+    permissaoPessoas: []
   });
 
   const [cidades, setCidades] = useState([]);
   const [idCidade, setIdCidade] = useState(null);
   const [pessoas, setPessoas] = useState([]);
+  const [permissoes, setPermissoes] = useState([])
+  const [idPermissao, setIdPermissao] = useState(null)
   const [atualizar, setAtualizar] = useState();
   const [cpf, setCpf] = useState("")
   const [cep, setCep] = useState("")
 
   useEffect(() => {
     buscarTodasPessoas();
-    buscarTodasCidades()
+    buscarTodasCidades();
+    buscarTodasPermissoes();
   }, [atualizar]);
 
   function handleChange(e) {
@@ -44,6 +48,12 @@ const Produto = () => {
     });
   }
 
+  function buscarTodasPermissoes() {
+    axios.get("http://localhost:8080/api/permissao/").then((result) => {
+      setPermissoes(result.data)
+    });
+  }
+
   function limpar() {
     setPessoa({
       nome: "",
@@ -52,6 +62,7 @@ const Produto = () => {
       endereco: "",
       cep: "",
       cidade: "",
+      permissaoPessoas: ""
     });
   }
 
@@ -62,11 +73,17 @@ const Produto = () => {
     var objConv = JSON.parse(obj);
     pessoa.cidade = objConv;
 
+    var idPermissaoNum = parseInt(idPermissao);
+    var objP = `[{"permissao":{"id":${idPermissaoNum}}}]`;
+    var objConvP = JSON.parse(objP);
+    pessoa.permissaoPessoas = objConvP;
+
     var cpfSM = cpf.replace(".", "").replace("-", "").replace(".", "")
     pessoa.cpf = cpfSM;
     
     var cepSM = cep.replace("-", "")
     pessoa.cep = cepSM
+    console.log(pessoa)
 
     if (pessoa.id === undefined) {
       if(!pessoa.email.includes('@') || (!pessoa.email.includes('.'))){
@@ -210,6 +227,25 @@ const Produto = () => {
             ))}
           </select>
         </div>
+
+        <div className="mb-3">
+          <label className="form-label">Permissão</label>
+          <select
+            name="permissao.nome"
+            onChange={(e) => {
+              setIdPermissao(e.target.value);
+            }}
+            className="form-select"
+            aria-label="Default select example"
+          >
+            {permissoes?.map((permissoess) => (
+              <option key={permissoess.id} value={permissoess.id}>
+                {permissoess.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        
         {pessoa.id && (
           <input type="submit" className="btn btn-success" value="Editar" />
         )}

@@ -4,9 +4,9 @@ import styles from "../../../styles/produto.module.css"
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
-const Produto = () => {
+const ProdutoImagens = () => {
   const [produto, setProduto] = useState({
     descricaoCurta: "",
     descricaoLonga: "",
@@ -15,6 +15,9 @@ const Produto = () => {
     marca: {},
     categoria: {}
   });
+
+  const router = useRouter();
+  const produtoId = router.query.produtoId
 
   const [marcas, setMarcas] = useState([]);
   const [categorias, setCategorias] = useState([]);
@@ -73,9 +76,9 @@ const Produto = () => {
     var obj = `{"id":${idCategoriaNum}}`;
     var objConv = JSON.parse(obj);
     produto.categoria = objConv;
-    console.log(produto);
+    console.log(produtoId)
 
-    if (produto.id === undefined) {
+    /*if (produto.id === undefined) {
       axios.post("http://localhost:8080/api/produto/", produto)
         .then(() => {return new Swal("Sucesso", "Produto Cadastrado com Sucesso!", "success")}).then((result) => {
           setAtualizar(result)
@@ -85,7 +88,7 @@ const Produto = () => {
       .then(() => {return new Swal("Sucesso", "Dados Editados com Sucesso!", "success")}).then((result) => {
         setAtualizar(result)
       });
-    }
+    }*/
     limpar();
   }
 
@@ -242,7 +245,6 @@ const Produto = () => {
                     Excluir
                   </button>
                   &nbsp;&nbsp;
-                  <Link href={`/cadastros/produtoImagens/${produtoss.id}`}><button type="button" className="btn btn-info">Imagens</button></Link>
                 </td>
               </tr>
             ))}
@@ -253,4 +255,4 @@ const Produto = () => {
   );
 };
 
-export default Produto;
+export default ProdutoImagens;
