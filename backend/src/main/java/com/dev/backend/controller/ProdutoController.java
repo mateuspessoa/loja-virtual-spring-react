@@ -30,6 +30,12 @@ public class ProdutoController {
 		return produtoService.buscarTodos();
 	}
 	
+	@GetMapping("/{id}")
+	@CrossOrigin("http://localhost:3000")
+	public Produto buscarPorId(@PathVariable("id") Long id) {
+		return produtoService.buscarPorId(id);
+	}
+	
 	@PostMapping("/")
 	@CrossOrigin("http://localhost:3000")
 	public Produto inserir(@RequestBody Produto produto) {

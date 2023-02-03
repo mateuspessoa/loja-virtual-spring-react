@@ -1,5 +1,7 @@
 package com.dev.backend.service;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,6 +28,19 @@ public class ProdutoImagensService {
 	
 	public List<ProdutoImagens> buscarTodos(){
 		return produtoImagensRepository.findAll();
+	}
+	
+	public List<ProdutoImagens> buscarPorProduto(Long idProduto){
+		List<ProdutoImagens> listaProdutoImagens = produtoImagensRepository.findByProdutoId(idProduto);
+		
+		for (ProdutoImagens produtoImagens : listaProdutoImagens) {
+			try (InputStream in = new FileInputStream("c:/imagens/" + produtoImagens.getNome())) {
+				produtoImagens.setArquivo(org.apache.commons.io.IOUtils.toByteArray(in));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return listaProdutoImagens;
 	}
 	
 	public ProdutoImagens inserir(Long idProduto, MultipartFile file) {

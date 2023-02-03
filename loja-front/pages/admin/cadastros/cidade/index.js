@@ -114,10 +114,11 @@ const Cidade = () => {
             onChange={(e) => {
               setIdEstado(e.target.value);
             }}
+            defaultValue={'DEFAULT'}
             className="form-select"
             aria-label="Default select example"
           >
-            <option disabled selected>Selecione...</option>
+            <option value="DEFAULT" disabled>Selecione...</option>
             {estados?.map((estadoss) => (
               <option key={estadoss.id} value={estadoss.id}>{estadoss.nome}</option>
             ))}

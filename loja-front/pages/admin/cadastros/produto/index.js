@@ -173,9 +173,11 @@ const Produto = () => {
             onChange={(e) => {
               setIdMarca(e.target.value);
             }}
+            defaultValue={'DEFAULT'}
             className="form-select"
             aria-label="Default select example"
           >
+            <option value="DEFAULT" disabled>Selecione...</option>
             {marcas?.map((marcass) => (
               <option key={marcass.id} value={marcass.id}>{marcass.nome}</option>
             ))}
@@ -189,9 +191,11 @@ const Produto = () => {
             onChange={(e) => {
               setIdCategoria(e.target.value);
             }}
+            defaultValue={'DEFAULT'}
             className="form-select"
             aria-label="Default select example"
           >
+            <option value="DEFAULT" disabled>Selecione...</option>
             {categorias?.map((categoriass) => (
               <option key={categoriass.id} value={categoriass.id}>{categoriass.nome}</option>
             ))}

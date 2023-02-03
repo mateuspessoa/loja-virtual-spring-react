@@ -217,9 +217,11 @@ const Produto = () => {
             onChange={(e) => {
               setIdCidade(e.target.value);
             }}
+            defaultValue={'DEFAULT'}
             className="form-select"
             aria-label="Default select example"
           >
+            <option value="DEFAULT" disabled>Selecione...</option>
             {cidades?.map((cidadess) => (
               <option key={cidadess.id} value={cidadess.id}>
                 {cidadess.nome}
@@ -235,9 +237,11 @@ const Produto = () => {
             onChange={(e) => {
               setIdPermissao(e.target.value);
             }}
+            defaultValue={'DEFAULT'}
             className="form-select"
             aria-label="Default select example"
           >
+            <option value="DEFAULT" disabled>Selecione...</option>
             {permissoes?.map((permissoess) => (
               <option key={permissoess.id} value={permissoess.id}>
                 {permissoess.nome}

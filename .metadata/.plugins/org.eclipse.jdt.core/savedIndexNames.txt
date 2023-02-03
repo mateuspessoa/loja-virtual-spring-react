@@ -1,7 +1,7 @@
 INDEX VERSION 1.131+C:\Users\olive\Documents\Projetos\workspace-java-eclipse\lojavirtual\.metadata\.plugins\org.eclipse.jdt.core
 1295958357.index
 1282426076.index
-790525055.index
+1976909171.index
 4203697402.index
 953495505.index
 1207792188.index
@@ -23,6 +23,7 @@ INDEX VERSION 1.131+C:\Users\olive\Documents\Projetos\workspace-java-eclipse\loj
 1996516978.index
 419311003.index
 894556365.index
+3050793203.index
 966785745.index
 3962851788.index
 2040559394.index
@@ -46,8 +47,8 @@ INDEX VERSION 1.131+C:\Users\olive\Documents\Projetos\workspace-java-eclipse\loj
 1837558446.index
 2893101971.index
 686104659.index
-3637320744.index
 60969461.index
+3637320744.index
 421258799.index
 2535949238.index
 2621309557.index
@@ -92,4 +93,4 @@ INDEX VERSION 1.131+C:\Users\olive\Documents\Projetos\workspace-java-eclipse\loj
 3736194558.index
 685983280.index
 3256246004.index
-1976909171.index
+790525055.index
