@@ -9,6 +9,7 @@
 
 .form {
     margin-top: 70px;
+    margin-left: 200px;
 }
 
 .container_imagens{
@@ -18,6 +19,7 @@
     width: 1000px;
     height: 500px;
     margin-top: 70px;
+    margin-left: 200px;
     background-color: red;
 }
 

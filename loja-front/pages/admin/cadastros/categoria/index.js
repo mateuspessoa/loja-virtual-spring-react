@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar";
-import styles from "../../../../styles/estado.module.css";
+import styles from "../../../../styles/estados.module.css";
 import Swal from "sweetalert2";
 
 import axios from "axios";
@@ -68,7 +68,16 @@ const Categoria = () => {
             'success'
           )
           setAtualizar(result)
-        })
+        }).catch(function (error) {
+          if (error.response) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Existem produtos cadastrados com essa categoria',
+              footer: 'Primeiro exclua os produtos cadastrados desta categoria'
+            })
+          }
+        });
       }
     })
   }

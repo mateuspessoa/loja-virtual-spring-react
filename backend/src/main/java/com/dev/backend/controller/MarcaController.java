@@ -45,7 +45,11 @@ public class MarcaController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("http://localhost:3000")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-		marcaService.excluir(id);
-		return ResponseEntity.ok().build();
+		try {
+			marcaService.excluir(id);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

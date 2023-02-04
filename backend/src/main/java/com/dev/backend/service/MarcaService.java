@@ -31,7 +31,11 @@ public class MarcaService {
 	}
 	
 	public void excluir(Long id) {
-		Marca marca = marcaRepository.findById(id).get();
-		marcaRepository.delete(marca);
+		try {
+			Marca marca = marcaRepository.findById(id).get();
+			marcaRepository.delete(marca);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			throw new RuntimeException("Existem produtos cadastrados com essa marca");
+		}
 	}
 }

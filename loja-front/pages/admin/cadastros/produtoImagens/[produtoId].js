@@ -20,9 +20,10 @@ const ProdutoImagens = () => {
   const produtoIdNum = parseInt(produtoId)
   
   const buscaPorProduto = useCallback(async () => {
-    await axios.get(`http://localhost:8080/api/produtoImagens/produto/${produtoId}`).then((result) => {
+      await axios.get(`http://localhost:8080/api/produtoImagens/produto/${produtoId}`).then((result) => {
       setImagens(result.data)
     })
+    
   }, [produtoId]);
 
   const buscaPorId = useCallback(async () => {
@@ -32,11 +33,9 @@ const ProdutoImagens = () => {
   }, [produtoId]);
 
   useEffect(() => {
-    if(imagens == null){
       buscaPorId();
       buscaPorProduto();
-    }
-  }, [buscaPorId, buscaPorProduto, atualizar, imagens]);
+  }, [buscaPorId, buscaPorProduto, atualizar]);
 
 
   function handleSubmit(e) {

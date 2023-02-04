@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar";
-import styles from "../../../../styles/estado.module.css";
+import styles from "../../../../styles/estados.module.css";
 import Swal from "sweetalert2";
 
 import axios from "axios";
@@ -50,6 +50,7 @@ const Estado = () => {
       });
     }
     limpar();
+    fechar()
   }
 
   function excluir(id) {
@@ -70,46 +71,57 @@ const Estado = () => {
             'success'
           )
           setAtualizar(result)
-        })
+        }).catch(function (error) {
+          if (error.response) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Não é possível excluir um estado que possui cidades',
+              footer: 'Primeiro exclua as cidades cadastradas nesse Estado'
+            })
+          }
+        });
       }
     })
   }
+  
 
   return (
     <div className={styles.container}>
       <Sidebar />
-
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nome do Estado</label>
-          <input
-            onChange={handleChange}
-            value={estado.nome}
-            name="nome"
-            type="text"
-            className="form-control"
-            aria-describedby="emailHelp"
-          />
+        <div id="cadastro" className={styles.cadastro}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Nome do Estado</label>
+              <input
+                onChange={handleChange}
+                value={estado.nome}
+                name="nome"
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Sigla do Estado</label>
+              <input
+                onChange={handleChange}
+                value={estado.sigla}
+                name="sigla"
+                type="text"
+                className="form-control"
+              />
+            </div>
+            {
+              estado.id && <input type="submit" className="btn btn-success" value="Editar" />
+            }
+            {
+              estado.id === undefined && <input type="submit" className="btn btn-success" value="Cadastrar" />
+            }
+          </form>
         </div>
-        <div className="mb-3">
-          <label className="form-label">Sigla do Estado</label>
-          <input
-            onChange={handleChange}
-            value={estado.sigla}
-            name="sigla"
-            type="text"
-            className="form-control"
-          />
-        </div>
-        {
-          estado.id && <input type="submit" className="btn btn-success" value="Editar" />
-        }
-        {
-          estado.id === undefined && <input type="submit" className="btn btn-success" value="Cadastrar" />
-        }
-      </form>
 
-      <div className={styles.tabela}>
+      <div id="tabela" className={styles.tabela}>
         <table className="table table-striped">
           <thead>
             <tr>

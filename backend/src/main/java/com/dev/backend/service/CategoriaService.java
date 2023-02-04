@@ -31,7 +31,12 @@ public class CategoriaService {
 	}
 	
 	public void excluir(Long id) {
-		Categoria categoria = categoriaRepository.findById(id).get();
-		categoriaRepository.delete(categoria);
+		try {
+			Categoria categoria = categoriaRepository.findById(id).get();
+			categoriaRepository.delete(categoria);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			throw new RuntimeException("Existem produtos cadastrados nessa categoria");
+		}
+		
 	}
 }

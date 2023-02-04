@@ -31,8 +31,12 @@ public class EstadoService {
 	}
 	
 	public void excluir(Long id) {
-		Estado estado = estadoRepository.findById(id).get();
-		estadoRepository.delete(estado);
+		try {
+			Estado estado = estadoRepository.findById(id).get();
+			estadoRepository.delete(estado);
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			throw new RuntimeException("Não é possível excluir um estado que possui cidades.");
+		}
+		
 	}
-
 }

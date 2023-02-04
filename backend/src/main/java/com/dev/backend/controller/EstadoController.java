@@ -45,7 +45,12 @@ public class EstadoController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("http://localhost:3000")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-		estadoService.excluir(id);
-		return ResponseEntity.ok().build();
+		try {
+			estadoService.excluir(id);
+			return ResponseEntity.ok().build();
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			return ResponseEntity.badRequest().build();
+		}
+
 	}
 }

@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+}
+
+.form {
+    margin-top: 200px;
+    margin-left: 200px;
+}
+
+.tabela {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    margin-top: 200px;
+    margin-left: 200px;
+}
+
+.btns {
+    display: flex;
+}

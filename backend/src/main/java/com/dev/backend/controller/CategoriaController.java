@@ -45,7 +45,12 @@ public class CategoriaController {
 	@DeleteMapping("/{id}")
 	@CrossOrigin("http://localhost:3000")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-		categoriaService.excluir(id);
-		return ResponseEntity.ok().build();
+		try {
+			categoriaService.excluir(id);
+			return ResponseEntity.ok().build();
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			return ResponseEntity.badRequest().build();
+		}
+		
 	}
 }

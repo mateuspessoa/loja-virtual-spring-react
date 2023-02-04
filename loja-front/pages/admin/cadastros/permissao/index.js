@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar";
-import styles from "../../../../styles/estado.module.css";
+import styles from "../../../../styles/estados.module.css";
 import Swal from "sweetalert2";
 
 import axios from "axios";
