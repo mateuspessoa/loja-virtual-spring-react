@@ -31,16 +31,16 @@ public class ProdutoImagensService {
 	}
 	
 	public List<ProdutoImagens> buscarPorProduto(Long idProduto){
-		List<ProdutoImagens> listaProdutoImagens = produtoImagensRepository.findByProdutoId(idProduto);
-		
-		for (ProdutoImagens produtoImagens : listaProdutoImagens) {
-			try (InputStream in = new FileInputStream("c:/imagens/" + produtoImagens.getNome())) {
-				produtoImagens.setArquivo(org.apache.commons.io.IOUtils.toByteArray(in));
-			} catch (Exception e) {
-				e.printStackTrace();
+			List<ProdutoImagens> listaProdutoImagens = produtoImagensRepository.findByProdutoId(idProduto);
+			
+			for (ProdutoImagens produtoImagens : listaProdutoImagens) {
+				try (InputStream in = new FileInputStream("c:/imagens/" + produtoImagens.getNome())) {
+					produtoImagens.setArquivo(org.apache.commons.io.IOUtils.toByteArray(in));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		return listaProdutoImagens;
+			return listaProdutoImagens;
 	}
 	
 	public ProdutoImagens inserir(Long idProduto, MultipartFile file) {

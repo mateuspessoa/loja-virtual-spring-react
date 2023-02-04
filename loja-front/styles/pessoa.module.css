@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+}
+
+.form {
+    margin-top: 100px;
+    margin-left: 80px;
+    width: 200px;
+}
+
+.tabela {
+    width: 1000px;
+    height: 200px;
+    margin-top: 200px;
+    margin-left: 80px;
+}
+
+.btns {
+    display: flex;
+}
+
+.span {
+    color: red;
+    font-size: 14px;
+    display: none;
+}

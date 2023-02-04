@@ -9,6 +9,7 @@ const Sidebar = () => {
 
         <nav className={styles.navbar}>
 
+            <Link className={styles.link} href="/admin/">Home</Link>
             <Link className={styles.link} href="/admin/cadastros/estado">Estados</Link>
             <Link className={styles.link} href="/admin/cadastros/cidade">Cidades</Link>
             <Link className={styles.link} href="/admin/cadastros/categoria">Categorias</Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar";
-import styles from "../../../../styles/produto.module.css";
+import styles from "../../../../styles/pessoa.module.css";
 import axios from "axios";
 import { IMaskInput } from "react-imask";
 import Swal from "sweetalert2";
@@ -270,27 +270,73 @@ const Produto = () => {
           <tbody>
             {pessoas?.map((pessoass) => (
               <tr key={pessoass.id}>
-                <td>{pessoass.nome}</td>
-                <td>{pessoass.cidade.nome}</td>
-                <td>{pessoass.email}</td>
-                <td className={styles.btns}>
-                  <button
-                    onClick={() => setPessoa(pessoass)}
-                    type="button"
-                    className="btn btn-warning"
-                  >
-                    Alterar
-                  </button>
-                  &nbsp;&nbsp;
-                  <button
-                    onClick={() => excluir(pessoass.id)}
-                    type="button"
-                    className="btn btn-danger"
-                  >
-                    Excluir
-                  </button>
-                  &nbsp;&nbsp;
-                </td>
+                {pessoass.cidade && (
+                  <>
+                  <td>{pessoass.nome}</td>
+                  <td>{pessoass.cidade.nome}</td>
+                  <td>{pessoass.email}</td>
+                  <td className={styles.btns}>
+                    <button
+                      onClick={() => setPessoa(pessoass)}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      Alterar
+                    </button>
+                    &nbsp;&nbsp;
+                    <button
+                      onClick={() => excluir(pessoass.id)}
+                      type="button"
+                      className="btn btn-danger"
+                    >
+                      Excluir
+                    </button>
+                    &nbsp;&nbsp;
+                  </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className={styles.tabela}>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pessoas?.map((pessoass) => (
+              <tr key={pessoass.id}>
+                {!pessoass.cidade &&(
+                  <>
+                    <td>{pessoass.nome}</td>
+                    <td>{pessoass.email}</td>
+                    <td className={styles.btns}>
+                      <button
+                        onClick={() => setPessoa(pessoass)}
+                        type="button"
+                        className="btn btn-warning"
+                      >
+                        Alterar
+                      </button>
+                      &nbsp;&nbsp;
+                      <button
+                        onClick={() => excluir(pessoass.id)}
+                        type="button"
+                        className="btn btn-danger"
+                      >
+                        Excluir
+                      </button>
+                      &nbsp;&nbsp;
+                    </td>
+                  </>
+                )}
+                
               </tr>
             ))}
           </tbody>

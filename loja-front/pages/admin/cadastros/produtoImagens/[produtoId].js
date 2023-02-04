@@ -19,11 +19,10 @@ const ProdutoImagens = () => {
   const produtoId = router.query.produtoId
   const produtoIdNum = parseInt(produtoId)
   
-  const buscaPorProduto = useCallback(async () => {
+  const buscaPorProduto = useCallback(async (id) => {
       await axios.get(`http://localhost:8080/api/produtoImagens/produto/${produtoId}`).then((result) => {
       setImagens(result.data)
     })
-    
   }, [produtoId]);
 
   const buscaPorId = useCallback(async () => {
