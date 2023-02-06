@@ -30,10 +30,10 @@ public class AuthFilterToken extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		try {
 			String jwt = getToken(request);
-			if(jwt != null && jwtUtil.validarToken(jwt)) {
+			if(jwt != null && jwtUtil.validarToken(jwt, request)) {
 				String email = jwtUtil.getEmailToken(jwt);
 				UserDetails userDetails = pessoaDetailService.loadUserByUsername(email);
-				UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getAuthorities());
+				UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 			}
