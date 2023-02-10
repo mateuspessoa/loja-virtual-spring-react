@@ -11,7 +11,10 @@ const Login = () => {
         senha: ""
     })
 
+
     const CHAVE_TOKEN = "";
+
+
 
     function handleChange(e) {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -38,7 +41,7 @@ const Login = () => {
             axios.post("http://localhost:8080/api/pessoa-gerenciamento/login", usuario).then(result => {
                 console.log(result);
                 localStorage.setItem("TOKEN", result.data.token);
-                window.location.reload(false);
+                window.location.href = "/admin";
             }).catch(function(error) {
                 if(error.response) {
                     Swal.fire({
@@ -74,7 +77,7 @@ const Login = () => {
                     <input type="password" name='senha' onChange={handleChange} value={usuario.senha} required />
                 </div>
                 <div className={styles.container_esqueci}>
-                    <Link href="#"><span>Esquecia a minha senha</span></Link>
+                    <Link href="/codigo"><span>Esquecia a minha senha</span></Link>
                 </div>
                 <div className={styles.submit}>
                     <input type="submit" value="Entrar" />
