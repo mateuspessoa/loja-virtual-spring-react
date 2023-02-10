@@ -5,85 +5,98 @@ import Swal from "sweetalert2";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Login from "@/pages/login";
 
 const Categoria = () => {
-  const [categoria, setCategoria] = useState({
-    nome: "",
-  });
 
-  const [categorias, setCategorias] = useState([]);
-  const [atualizar, setAtualizar] = useState();
+  const [autorizar, setAutorizar] = useState("")
 
   useEffect(() => {
-    buscarTodos();
-  }, [atualizar])
+    const item = localStorage.getItem('TOKEN') != null
+    setAutorizar(item)
+    console.log(item)
+  }, [])
 
-  function handleChange(e) {
-    setCategoria({ ...categoria, [e.target.name]: e.target.value });
-  }
 
-  function buscarTodos() {
-    axios.get("http://localhost:8080/api/categoria/").then((result) => {
-        setCategorias(result.data);
-    })
-  }
+  const PaginaCategoria = () => {
 
-  function limpar() {
-    setCategoria({
+    const [categoria, setCategoria] = useState({
       nome: "",
     });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (categoria.id === undefined) {
-      axios.post("http://localhost:8080/api/categoria/", categoria)
-        .then(() => {return new Swal("Sucesso", "Categoria Cadastrada com Sucesso!", "success")}).then((result) => {
-          setAtualizar(result)
-        })
-    } else {
-      axios.put("http://localhost:8080/api/categoria/", categoria)
-      .then(() => {return new Swal("Sucesso", "Dados Editados com Sucesso!", "success")}).then((result) => {
-        setAtualizar(result)
+  
+    const [categorias, setCategorias] = useState([]);
+    const [atualizar, setAtualizar] = useState();
+  
+    useEffect(() => {
+      buscarTodos();
+    }, [atualizar])
+  
+    function handleChange(e) {
+      setCategoria({ ...categoria, [e.target.name]: e.target.value });
+    }
+  
+    function buscarTodos() {
+      axios.get("http://localhost:8080/api/categoria/").then((result) => {
+          setCategorias(result.data);
+      })
+    }
+  
+    function limpar() {
+      setCategoria({
+        nome: "",
       });
     }
-    limpar();
-  }
-
-  function excluir(id) {
-    Swal.fire({
-      title: 'Você tem Certeza?',
-      text: "Essa ação não poderá ser desfeita!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Excluir'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.delete("http://localhost:8080/api/categoria/" + id).then(result => {
-          Swal.fire(
-            'Excluído!',
-            'A Categoria foi excluída com sucesso!.',
-            'success'
-          )
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+      if (categoria.id === undefined) {
+        axios.post("http://localhost:8080/api/categoria/", categoria)
+          .then(() => {return new Swal("Sucesso", "Categoria Cadastrada com Sucesso!", "success")}).then((result) => {
+            setAtualizar(result)
+          })
+      } else {
+        axios.put("http://localhost:8080/api/categoria/", categoria)
+        .then(() => {return new Swal("Sucesso", "Dados Editados com Sucesso!", "success")}).then((result) => {
           setAtualizar(result)
-        }).catch(function (error) {
-          if (error.response) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Existem produtos cadastrados com essa categoria',
-              footer: 'Primeiro exclua os produtos cadastrados desta categoria'
-            })
-          }
         });
       }
-    })
-  }
+      limpar();
+    }
+  
+    function excluir(id) {
+      Swal.fire({
+        title: 'Você tem Certeza?',
+        text: "Essa ação não poderá ser desfeita!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Excluir'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:8080/api/categoria/" + id).then(result => {
+            Swal.fire(
+              'Excluído!',
+              'A Categoria foi excluída com sucesso!.',
+              'success'
+            )
+            setAtualizar(result)
+          }).catch(function (error) {
+            if (error.response) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Existem produtos cadastrados com essa categoria',
+                footer: 'Primeiro exclua os produtos cadastrados desta categoria'
+              })
+            }
+          });
+        }
+      })
+    }
 
-  return (
-    <div className={styles.container}>
+    return (
+      <div className={styles.container}>
       <Sidebar />
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -130,6 +143,19 @@ const Categoria = () => {
         </table>
       </div>
     </div>
+    )
+  }
+
+
+  return (
+    <div>
+      {
+        autorizar ?
+        <PaginaCategoria />
+        :
+        <Login />
+      }
+  </div>
   );
 };
 

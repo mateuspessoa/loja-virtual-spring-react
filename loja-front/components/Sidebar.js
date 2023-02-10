@@ -3,6 +3,12 @@ import React from "react";
 import styles from "../styles/sidebar.module.css"
 
 const Sidebar = () => {
+
+  function sair() {
+    localStorage.removeItem("TOKEN");
+    window.location.reload(false);
+  }
+
   return (
     <header className={styles.header}>
         <h1 className={styles.titulo}>Painel Administrativo</h1>
@@ -17,6 +23,10 @@ const Sidebar = () => {
             <Link className={styles.link} href="/admin/cadastros/permissao">Permissões</Link>
             <Link className={styles.link} href="/admin/cadastros/produto">Produtos</Link>
             <Link className={styles.link} href="/admin/cadastros/pessoa">Pessoas</Link>
+
+            <div className={styles.container_sair}>
+              <button onClick={() => sair()} className={styles.sair}>Sair</button>
+            </div>
 
         </nav>
     </header>
